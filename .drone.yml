@@ -23,7 +23,7 @@ pipeline:
   build-node:
     image: hypriot/rpi-node
     commands:
-      - npm install
+      - yarn install
 
   # deploy:
   #   image: tbd:latest
