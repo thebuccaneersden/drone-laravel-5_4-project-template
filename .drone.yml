@@ -34,4 +34,3 @@ services:
     environment:
       - MYSQL_DATABASE=testing
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-
