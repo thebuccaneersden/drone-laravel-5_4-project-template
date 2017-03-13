@@ -1,19 +1,30 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "thebuccaneersden/drone-laravel-5_4-project-template",
+    "description": "A template for a Laravel v5.4 project that integrates with DroneCI",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.4.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "composer-packages/linters": "0.1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7"
+        "phpunit/phpunit": "~5.7",
+        "symfony/css-selector": "3.1.*",
+        "symfony/dom-crawler": "3.1.*",
+        "symfony/yaml": "^3.0",
+        "sensiolabs/security-checker": "^3.0"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "http://pi.phulse.com:10080/composer-packages/linters.git"
+        }
+    ],
     "autoload": {
         "classmap": [
             "database"
