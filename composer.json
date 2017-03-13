@@ -8,7 +8,8 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "composer-packages/linters": "0.1.2"
+        "composer-packages/linters": "0.1.2",
+        "composer-packages/drone-script-library": "0.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -23,6 +24,9 @@
         {
             "type": "vcs",
             "url":  "http://pi.phulse.com:10080/composer-packages/linters.git"
+        }, {
+            "type": "vcs",
+            "url":  "http://pi.phulse.com:10080/composer-packages/drone-script-library.git"
         }
     ],
     "autoload": {
@@ -56,6 +60,7 @@
     },
     "config": {
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "secure-http": false
     }
 }
