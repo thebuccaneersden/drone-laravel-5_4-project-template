@@ -12,6 +12,7 @@ pipeline:
       - composer -q install
       - ./vendor/bin/php-linter ./app/
       - php vendor/bin/security-checker security:check ./ -n
+      - cp .env.drone .env
       - php artisan migrate --env=testing --no-interaction -vvv
       - php artisan db:seed --env=testing --no-interaction -vvv
       - ./vendor/bin/phpunit  -vvv
@@ -25,6 +26,9 @@ pipeline:
     commands:
       - yarn install
 
+  ###
+  # DEPLOYMENT STEP - fill in the details when set up
+  ###
   # deploy:
   #   image: tbd:latest
 
