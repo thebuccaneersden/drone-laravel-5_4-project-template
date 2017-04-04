@@ -26,5 +26,5 @@ wait_for_port() {
 }
 
 echo "Waiting for port 8000"
-wait_for_port 8000
+wait_for_port 80
 
