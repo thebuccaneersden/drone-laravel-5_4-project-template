@@ -13,7 +13,7 @@ wait_for_port() {
   while true; do
     ((count++))
     echo "- curling"
-    curl localhost:${port} -I -f > /dev/null
+    curl example.com:${port} -I -f > /dev/null
     if [ "$?" == "0" ]
     then
       echo "- [✓] Web Server is up!"
