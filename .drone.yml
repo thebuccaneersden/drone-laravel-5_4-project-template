@@ -18,9 +18,8 @@ pipeline:
       - ./vendor/bin/phpunit  -vvv
       - php artisan serve > /dev/null 2>&1 &
       - sleep 5
-      - curl localhost:8000
-      - ./debug_wait_for_webserver.sh
-      # - ./vendor/bin/wait-for-webserver
+      # - ./debug_wait_for_webserver.sh
+      - ./vendor/bin/wait-for-webserver
       - curl localhost:8000
       - php -v
 
