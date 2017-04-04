@@ -10,7 +10,7 @@ wait_for_port() {
 
   local port=$1
   echo "- local port"
-  count=0
+  count=1
   echo "- set count"
   while true; do
     echo "- in loop"
