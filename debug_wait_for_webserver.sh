@@ -10,11 +10,11 @@ wait_for_port() {
 
   local port=$1
   echo "- local port"
-  count=1
+  count=0
   echo "- set count"
   while true; do
     echo "- in loop"
-    ((count++))
+    ((++count))
     echo "- curling"
     curl example.com:${port} -I -f > /dev/null
     if [ "$?" == "0" ]
