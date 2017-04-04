@@ -17,6 +17,8 @@ pipeline:
       - php artisan db:seed --env=testing --no-interaction -vvv
       - ./vendor/bin/phpunit  -vvv
       - php artisan serve > /dev/null 2>&1 &
+      - sleep 5
+      - curl localhost:8000
       - ./vendor/bin/wait-for-webserver
       - curl localhost:8000
       - php -v
