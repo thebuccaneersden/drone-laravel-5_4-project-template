@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Added to fix "Specified key was too long error" during migrations bug.
+        // See: https://laravel-news.com/laravel-5-4-key-too-long-error
+        Schema::defaultStringLength(191);
     }
 
     /**
