@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "43b749eace05f1c8e56ed1f39eb469d1",
+    "content-hash": "51a217cd3f63afb8c1b6dd6bfdf5577f",
     "packages": [
         {
             "name": "composer-packages/drone-script-library",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "http://pi.phulse.com:10080/composer-packages/drone-script-library.git",
-                "reference": "3fedc6573a407937fd54899ae20b25c8f537e3b9"
+                "reference": "edff055708433addabc3e29534ac6daa4233cf47"
             },
             "bin": [
                 "bin/wait-for-webserver"
@@ -24,7 +24,7 @@
                     "email": "hans.andersen@phulse.com"
                 }
             ],
-            "time": "2017-04-04T19:12:33+00:00"
+            "time": "2017-04-04T19:27:17+00:00"
         },
         {
             "name": "composer-packages/linters",
