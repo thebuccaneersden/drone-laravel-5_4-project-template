@@ -9,13 +9,13 @@ pipeline:
     volumes:
       - /tmp/drone-volume-cache/composer:/cache
 
-  # restore-yarn-cache:
-  #   image: foo/drone-volume-cache
-  #   restore: true
-  #   mount:
-  #     - /drone/.composer
-  #   volumes:
-  #     - /tmp/drone-volume-cache/yarn:/cache
+  restore-yarn-cache:
+    image: foo/drone-volume-cache
+    restore: true
+    mount:
+      - /drone/.yarn
+    volumes:
+      - /tmp/drone-volume-cache/yarn:/cache
 
   clone:
     image: armswarmdrone/git
@@ -43,6 +43,18 @@ pipeline:
       - curl localhost:8000
       - php -v
 
+  build-node:
+    image: hypriot/rpi-node
+    commands:
+      ###
+      # The following 2 commands ensure that yarn caches its stuff in a common
+      # area so it can be cached by the `drone-volume-cache` plugin.
+      - if [ ! -d "/drone/.yarn/" ]; then mkdir /drone/.yarn; fi
+      - yarn config set cache-folder /drone/.yarn
+      ###
+      - yarn cache dir
+      - yarn install
+
   rebuild-composer-cache:
     image: foo/drone-volume-cache
     rebuild: true
@@ -51,14 +63,13 @@ pipeline:
     volumes:
       - /tmp/drone-volume-cache/composer:/cache
 
-  build-node:
-    image: hypriot/rpi-node
-    commands:
-      # TODO: Yarn is not installed. Maybe fork rpi-node and install yarn on it?
-      # - yarn install
-      - node --version
-      - yarn --version
-      - yarn install
+  rebuild-yarn-cache:
+    image: foo/drone-volume-cache
+    rebuild: true
+    mount:
+      - /drone/.yarn
+    volumes:
+      - /tmp/drone-volume-cache/yarn:/cache
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
