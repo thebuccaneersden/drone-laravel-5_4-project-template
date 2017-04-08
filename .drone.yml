@@ -9,6 +9,14 @@ pipeline:
     volumes:
       - /tmp/drone-volume-cache/composer:/cache
 
+  # restore-yarn-cache:
+  #   image: foo/drone-volume-cache
+  #   restore: true
+  #   mount:
+  #     - /drone/.composer
+  #   volumes:
+  #     - /tmp/drone-volume-cache/yarn:/cache
+
   clone:
     image: armswarmdrone/git
 
@@ -50,6 +58,7 @@ pipeline:
       # - yarn install
       - node --version
       - yarn --version
+      - yarn install
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
