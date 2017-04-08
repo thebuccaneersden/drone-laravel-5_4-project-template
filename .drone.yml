@@ -6,7 +6,6 @@ pipeline:
     restore: true
     mount:
       - /drone/.composer
-    # Mount the cache volume, needs "Trusted"
     volumes:
       - /tmp/drone-volume-cache/composer:/cache
 
@@ -41,7 +40,6 @@ pipeline:
     rebuild: true
     mount:
       - /drone/.composer
-    # Mount the cache volume, needs "Trusted"
     volumes:
       - /tmp/drone-volume-cache/composer:/cache
 
@@ -50,7 +48,8 @@ pipeline:
     commands:
       # TODO: Yarn is not installed. Maybe fork rpi-node and install yarn on it?
       # - yarn install
-      - node -v
+      - node --version
+      - yarn --version
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
