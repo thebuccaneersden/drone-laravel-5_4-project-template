@@ -2,7 +2,7 @@ platform: linux/arm
 
 pipeline:
   restore-cache:
-    image: drillster/drone-volume-cache
+    image: foo/drone-volume-cache
     restore: true
     mount:
       - ~/.cache/
@@ -38,7 +38,7 @@ pipeline:
       - node -v
 
   rebuild-cache:
-    image: drillster/drone-volume-cache
+    image: foo/drone-volume-cache
     rebuild: true
     mount:
       - ~/.cache/
