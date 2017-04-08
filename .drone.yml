@@ -1,6 +1,15 @@
 platform: linux/arm
 
 pipeline:
+  restore-cache:
+    image: drillster/drone-volume-cache
+    restore: true
+    mount:
+      - ~/.cache/
+    # Mount the cache volume, needs "Trusted"
+    volumes:
+      - /tmp/drone-volume-cache:/cache
+
   clone:
     image: armswarmdrone/git
 
@@ -28,6 +37,15 @@ pipeline:
       # - yarn install
       - node -v
 
+  rebuild-cache:
+    image: drillster/drone-volume-cache
+    rebuild: true
+    mount:
+      - ~/.cache/
+    # Mount the cache volume, needs "Trusted"
+    volumes:
+      - /tmp/drone-volume-cache:/cache
+
   ###
   # DEPLOYMENT STEP - fill in the details when set up
   ###
@@ -40,4 +58,5 @@ services:
     environment:
       - MYSQL_DATABASE=testing
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+
 
