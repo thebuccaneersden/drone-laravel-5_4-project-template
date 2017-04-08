@@ -16,10 +16,8 @@ pipeline:
   build:
     image: sandlayth/arm-nginx-php-fpm
     commands:
-      - ls -la /drone/
-      - ls -la /drone/src/
-      - ls -la /drone/src/pi.phulse.com/mirrored-github-projects/
-      - ls -la /drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/
+      - ls -la /
+      - ls -la /home/
       - ls -la ~/.composer/
       - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
       - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
