@@ -17,7 +17,7 @@ pipeline:
     image: sandlayth/arm-nginx-php-fpm
     commands:
       - mv ~/.composer /drone/
-      - COMPOSER_HOME=/drone/.composer
+      - export COMPOSER_HOME=/drone/.composer
       # - ls -la /root/
       # - ls -la ~/.composer/
       - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
