@@ -47,6 +47,7 @@ pipeline:
       # TODO: Yarn is not installed. Maybe fork rpi-node and install yarn on it?
       # - yarn install
       - node -v
+      - ls -la ~/.composer/
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
