@@ -16,8 +16,12 @@ pipeline:
   build:
     image: sandlayth/arm-nginx-php-fpm
     commands:
+      ###
+      # The following 2 commands ensure that composer caches its stuff in a common
+      # area so it can be cached by the `drone-volume-cache` plugin.
       - if [ ! -d "/drone/.composer/" ]; then mv ~/.composer /drone/; fi
       - export COMPOSER_HOME=/drone/.composer
+      ###
       - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
       - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
       - composer -q install
