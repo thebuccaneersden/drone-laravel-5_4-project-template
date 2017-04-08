@@ -16,7 +16,7 @@ pipeline:
   build:
     image: sandlayth/arm-nginx-php-fpm
     commands:
-      - if [ -d "/drone/.composer/" ]; then mv ~/.composer /drone/; fi
+      - if [ ! -d "/drone/.composer/" ]; then mv ~/.composer /drone/; fi
       - export COMPOSER_HOME=/drone/.composer
       - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
       - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
