@@ -1,14 +1,14 @@
 platform: linux/arm
 
 pipeline:
-  restore-cache:
+  restore-composer-cache:
     image: foo/drone-volume-cache
     restore: true
     mount:
-      - ~/.cache/
+      - ~/.composer/
     # Mount the cache volume, needs "Trusted"
     volumes:
-      - /tmp/drone-volume-cache:/cache
+      - /tmp/drone-volume-cache/composer:/cache
 
   clone:
     image: armswarmdrone/git
@@ -19,8 +19,6 @@ pipeline:
       - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
       - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
       - composer -q install
-      - ls -la ~/.composer
-      - sjdhfgkjhgsdf
       - ./vendor/bin/php-linter ./app/
       - php vendor/bin/security-checker security:check ./ -n
       - cp .env.drone .env
@@ -39,14 +37,14 @@ pipeline:
       # - yarn install
       - node -v
 
-  rebuild-cache:
+  rebuild-composer-cache:
     image: foo/drone-volume-cache
     rebuild: true
     mount:
-      - ~/.cache/
+      - ~/.composer/
     # Mount the cache volume, needs "Trusted"
     volumes:
-      - /tmp/drone-volume-cache:/cache
+      - /tmp/drone-volume-cache/composer:/cache
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
