@@ -5,7 +5,7 @@ pipeline:
     image: foo/drone-volume-cache
     restore: true
     mount:
-      - ~/.composer/
+      - ~/.composer
     # Mount the cache volume, needs "Trusted"
     volumes:
       - /tmp/drone-volume-cache/composer:/cache
@@ -36,7 +36,7 @@ pipeline:
     image: foo/drone-volume-cache
     rebuild: true
     mount:
-      - ~/.composer/
+      - ~/.composer
     # Mount the cache volume, needs "Trusted"
     volumes:
       - /tmp/drone-volume-cache/composer:/cache
