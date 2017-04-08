@@ -31,6 +31,7 @@ pipeline:
       - curl localhost:8000
       - php -v
       - ls -la ~/.composer/
+      - pwd ~/.composer/
 
   rebuild-composer-cache:
     image: foo/drone-volume-cache
@@ -47,7 +48,8 @@ pipeline:
       # TODO: Yarn is not installed. Maybe fork rpi-node and install yarn on it?
       # - yarn install
       - node -v
-      - ls -la ~/.composer/
+      - ls -la ~/
+      - ls -la /home/
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
