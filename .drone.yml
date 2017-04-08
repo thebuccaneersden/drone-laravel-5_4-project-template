@@ -19,8 +19,6 @@ pipeline:
       - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
       - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
       - composer -q install
-      - ls -la ~/
-      - ls -la ~/.cache
       - ls -la ~/.composer
       - sjdhfgkjhgsdf
       - ./vendor/bin/php-linter ./app/
