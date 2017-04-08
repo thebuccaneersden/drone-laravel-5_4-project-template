@@ -5,7 +5,7 @@ pipeline:
     image: foo/drone-volume-cache
     restore: true
     mount:
-      - /root/.composer
+      - /drone/.composer
     # Mount the cache volume, needs "Trusted"
     volumes:
       - /tmp/drone-volume-cache/composer:/cache
@@ -18,28 +18,25 @@ pipeline:
     commands:
       - mv ~/.composer /drone/
       - export COMPOSER_HOME=/drone/.composer
-      # - ls -la /root/
-      # - ls -la ~/.composer/
       - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
       - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
       - composer -q install
-      # - ./vendor/bin/php-linter ./app/
-      # - php vendor/bin/security-checker security:check ./ -n
-      # - cp .env.drone .env
-      # - php artisan migrate --env=testing --no-interaction -vvv
-      # - php artisan db:seed --env=testing --no-interaction -vvv
-      # - ./vendor/bin/phpunit  -vvv
-      # - php artisan serve > /dev/null 2>&1 &
-      # - ./vendor/bin/wait-for-webserver
-      # - curl localhost:8000
-      # - php -v
-      # - ls -la ~/.composer/
+      - ./vendor/bin/php-linter ./app/
+      - php vendor/bin/security-checker security:check ./ -n
+      - cp .env.drone .env
+      - php artisan migrate --env=testing --no-interaction -vvv
+      - php artisan db:seed --env=testing --no-interaction -vvv
+      - ./vendor/bin/phpunit  -vvv
+      - php artisan serve > /dev/null 2>&1 &
+      - ./vendor/bin/wait-for-webserver
+      - curl localhost:8000
+      - php -v
 
   rebuild-composer-cache:
     image: foo/drone-volume-cache
     rebuild: true
     mount:
-      - /root/.composer
+      - /drone/.composer
     # Mount the cache volume, needs "Trusted"
     volumes:
       - /tmp/drone-volume-cache/composer:/cache
@@ -50,8 +47,6 @@ pipeline:
       # TODO: Yarn is not installed. Maybe fork rpi-node and install yarn on it?
       # - yarn install
       - node -v
-      - ls -la /drone/
-      - ls -la /drone/.composer/
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
