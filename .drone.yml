@@ -51,7 +51,7 @@ pipeline:
       # - yarn install
       - node -v
       - ls -la /drone/
-      - ls -la /src/
+      - ls -la /drone/src/
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
