@@ -16,6 +16,8 @@ pipeline:
   build:
     image: sandlayth/arm-nginx-php-fpm
     commands:
+      - mv ~/.composer /drone/
+      - env COMPOSER_HOME=/drone/.composer
       # - ls -la /root/
       # - ls -la ~/.composer/
       # - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
@@ -32,8 +34,6 @@ pipeline:
       # - curl localhost:8000
       # - php -v
       # - ls -la ~/.composer/
-      - touch /root/hello
-      - touch /tmp/hello
 
   rebuild-composer-cache:
     image: foo/drone-volume-cache
@@ -51,7 +51,6 @@ pipeline:
       # - yarn install
       - node -v
       - ls -la /drone/
-      - ls -la /drone/src/
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
