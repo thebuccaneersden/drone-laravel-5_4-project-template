@@ -17,12 +17,12 @@ pipeline:
     image: sandlayth/arm-nginx-php-fpm
     commands:
       - mv ~/.composer /drone/
-      - env COMPOSER_HOME=/drone/.composer
+      - COMPOSER_HOME=/drone/.composer
       # - ls -la /root/
       # - ls -la ~/.composer/
-      # - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
-      # - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
-      # - composer -q install
+      - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
+      - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
+      - composer -q install
       # - ./vendor/bin/php-linter ./app/
       # - php vendor/bin/security-checker security:check ./ -n
       # - cp .env.drone .env
@@ -51,6 +51,7 @@ pipeline:
       # - yarn install
       - node -v
       - ls -la /drone/
+      - ls -la /drone/.composer/
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
