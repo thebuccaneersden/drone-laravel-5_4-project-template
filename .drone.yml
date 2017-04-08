@@ -53,7 +53,7 @@ pipeline:
       - yarn config set cache-folder /drone/.yarn
       ###
       - yarn cache dir
-      - yarn install
+      - yarn install --no-progress
 
   rebuild-composer-cache:
     image: foo/drone-volume-cache
