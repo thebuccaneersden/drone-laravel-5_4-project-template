@@ -16,22 +16,24 @@ pipeline:
   build:
     image: sandlayth/arm-nginx-php-fpm
     commands:
-      - ls -la /root/
-      - ls -la ~/.composer/
-      - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
-      - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
-      - composer -q install
-      - ./vendor/bin/php-linter ./app/
-      - php vendor/bin/security-checker security:check ./ -n
-      - cp .env.drone .env
-      - php artisan migrate --env=testing --no-interaction -vvv
-      - php artisan db:seed --env=testing --no-interaction -vvv
-      - ./vendor/bin/phpunit  -vvv
-      - php artisan serve > /dev/null 2>&1 &
-      - ./vendor/bin/wait-for-webserver
-      - curl localhost:8000
-      - php -v
-      - ls -la ~/.composer/
+      # - ls -la /root/
+      # - ls -la ~/.composer/
+      # - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
+      # - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
+      # - composer -q install
+      # - ./vendor/bin/php-linter ./app/
+      # - php vendor/bin/security-checker security:check ./ -n
+      # - cp .env.drone .env
+      # - php artisan migrate --env=testing --no-interaction -vvv
+      # - php artisan db:seed --env=testing --no-interaction -vvv
+      # - ./vendor/bin/phpunit  -vvv
+      # - php artisan serve > /dev/null 2>&1 &
+      # - ./vendor/bin/wait-for-webserver
+      # - curl localhost:8000
+      # - php -v
+      # - ls -la ~/.composer/
+      - touch /root/hello
+      - touch /tmp/hello
 
   rebuild-composer-cache:
     image: foo/drone-volume-cache
@@ -49,7 +51,7 @@ pipeline:
       # - yarn install
       - node -v
       - ls -la /root/
-      - ls -la /root/.composer/
+      - ls -la /tmp/
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
