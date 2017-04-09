@@ -64,9 +64,6 @@ pipeline:
         fi
       - npm config set cache /drone/.npm/cache
       - ln -s /drone/.npm/node_modules ./
-      # - cp -R /drone/.npm/node_modules ./
-      - ls -la ./
-      - ls -la ./node_modules/
       ###
       - npm install
       # - rm -rf /drone/.npm/node_modules
