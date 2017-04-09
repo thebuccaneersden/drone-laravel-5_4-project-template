@@ -67,9 +67,9 @@ pipeline:
       - ls -la ./
       - ls -la ./node_modules/
       ###
-      - npm install
       - apt-get install rsync
       - rsync -h
+      - npm install
       # - cp -R ./node_modules/* /drone/.npm/node_modules/
       # - npm install -g node-gyp
       # - yarn cache dir
