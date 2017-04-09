@@ -65,6 +65,7 @@ pipeline:
       - npm config set cache /drone/.npm/cache
       - cp -R /drone/.npm/node_modules ./
       - ls -la ./
+      - ls -la ./node_modules/
       ###
       - npm install
       # - npm install -g node-gyp
