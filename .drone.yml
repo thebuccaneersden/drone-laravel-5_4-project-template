@@ -67,12 +67,10 @@ pipeline:
       - ls -la ./
       - ls -la ./node_modules/
       ###
-      - apt-get update
-      - apt-cache search rsync
-      - apt-get install rsync
-      - rsync -h
       - npm install
-      # - cp -R ./node_modules/* /drone/.npm/node_modules/
+      - rm -rf /drone/.npm/node_modules
+      - mkdir /drone/.npm/node_modules
+      - cp -R ./node_modules/* /drone/.npm/node_modules/
       # - npm install -g node-gyp
       # - yarn cache dir
       # - sleep 50000
