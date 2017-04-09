@@ -67,6 +67,7 @@ pipeline:
       ###
       - npm config set loglevel warn
       - npm install
+      - ./node_modules/newman/bin/newman.js -v
       # - rm -rf /drone/.npm/node_modules
       # - mkdir /drone/.npm/node_modules
       # - cp -R ./node_modules/* /drone/.npm/node_modules/
