@@ -63,14 +63,15 @@ pipeline:
           mkdir /drone/.npm/node_modules;
         fi
       - npm config set cache /drone/.npm/cache
-      - cp -R /drone/.npm/node_modules ./
+      - ln -s /drone/.npm/node_modules ./
+      # - cp -R /drone/.npm/node_modules ./
       - ls -la ./
       - ls -la ./node_modules/
       ###
       - npm install
-      - rm -rf /drone/.npm/node_modules
-      - mkdir /drone/.npm/node_modules
-      - cp -R ./node_modules/* /drone/.npm/node_modules/
+      # - rm -rf /drone/.npm/node_modules
+      # - mkdir /drone/.npm/node_modules
+      # - cp -R ./node_modules/* /drone/.npm/node_modules/
       # - npm install -g node-gyp
       # - yarn cache dir
       # - sleep 50000
