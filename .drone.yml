@@ -9,13 +9,13 @@ pipeline:
     volumes:
       - /tmp/drone-volume-cache/composer:/cache
 
-  restore-yarn-cache:
+  restore-npm-cache:
     image: foo/drone-volume-cache
     restore: true
     mount:
-      - /drone/.yarn
+      - /drone/.npm
     volumes:
-      - /tmp/drone-volume-cache/yarn:/cache
+      - /tmp/drone-volume-cache/npm:/cache
 
   clone:
     image: armswarmdrone/git
@@ -50,10 +50,10 @@ pipeline:
     image: hypriot/rpi-node
     commands:
       ###
-      # The following 2 commands ensure that yarn caches its stuff in a common
+      # The following 2 commands ensure that npm caches its stuff in a common
       # area so it can be cached by the `drone-volume-cache` plugin.
-      # - if [ ! -d "/drone/.yarn/" ]; then mkdir /drone/.yarn; fi
-      # - yarn config set cache-folder /drone/.yarn
+      - if [ ! -d "/drone/.npm/" ]; then mkdir /drone/.npm; fi
+      - npm config set cache /drone/.npm
       ###
       - npm install
       # - npm install -g node-gyp
@@ -69,13 +69,13 @@ pipeline:
     volumes:
       - /tmp/drone-volume-cache/composer:/cache
 
-  rebuild-yarn-cache:
+  rebuild-npm-cache:
     image: foo/drone-volume-cache
     rebuild: true
     mount:
-      - /drone/.yarn
+      - /drone/.npm
     volumes:
-      - /tmp/drone-volume-cache/yarn:/cache
+      - /tmp/drone-volume-cache/npm:/cache
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
