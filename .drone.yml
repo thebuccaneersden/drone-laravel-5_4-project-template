@@ -67,6 +67,7 @@ pipeline:
       - ls -la ./
       - ls -la ./node_modules/
       ###
+      - apt-cache search rsync
       - apt-get install rsync
       - rsync -h
       - npm install
