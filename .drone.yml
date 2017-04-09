@@ -65,6 +65,7 @@ pipeline:
       - npm config set cache /drone/.npm/cache
       - ln -s /drone/.npm/node_modules ./
       ###
+      - npm config set loglevel warn
       - npm install
       # - rm -rf /drone/.npm/node_modules
       # - mkdir /drone/.npm/node_modules
