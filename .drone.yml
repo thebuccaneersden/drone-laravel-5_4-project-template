@@ -68,6 +68,8 @@ pipeline:
       - ls -la ./node_modules/
       ###
       - npm install
+      - rsync -h
+      # - cp -R ./node_modules/* /drone/.npm/node_modules/
       # - npm install -g node-gyp
       # - yarn cache dir
       # - sleep 50000
