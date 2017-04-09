@@ -22,7 +22,6 @@ pipeline:
 
   build:
     image: sandlayth/arm-nginx-php-fpm
-    detach: true
     commands:
       ###
       # The following 2 commands ensure that composer caches its stuff in a common
@@ -67,9 +66,10 @@ pipeline:
       - ln -s /drone/.npm/node_modules ./
       ###
       - npm config set loglevel warn
-      - npm install
-      - ./node_modules/newman/bin/newman.js -v
-      - curl localhost:8000
+      # - npm install
+      # - ./node_modules/newman/bin/newman.js -v
+      - curl localhost
+      # - curl localhost:8000
       # - rm -rf /drone/.npm/node_modules
       # - mkdir /drone/.npm/node_modules
       # - cp -R ./node_modules/* /drone/.npm/node_modules/
@@ -107,4 +107,8 @@ services:
       - MYSQL_DATABASE=testing
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
-
+  webserver:
+    image: sandlayth/arm-nginx-php-fpm
+    environment:
+      # - MYSQL_DATABASE=testing
+      # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
