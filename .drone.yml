@@ -1,21 +1,21 @@
 platform: linux/arm
 
 pipeline:
-  restore-composer-cache:
-    image: foo/drone-volume-cache
-    restore: true
-    mount:
-      - /drone/.composer
-    volumes:
-      - /tmp/drone-volume-cache/composer:/cache
+  # restore-composer-cache:
+  #   image: foo/drone-volume-cache
+  #   restore: true
+  #   mount:
+  #     - /drone/.composer
+  #   volumes:
+  #     - /tmp/drone-volume-cache/composer:/cache
 
-  restore-npm-cache:
-    image: foo/drone-volume-cache
-    restore: true
-    mount:
-      - /drone/.npm
-    volumes:
-      - /tmp/drone-volume-cache/npm:/cache
+  # restore-npm-cache:
+  #   image: foo/drone-volume-cache
+  #   restore: true
+  #   mount:
+  #     - /drone/.npm
+  #   volumes:
+  #     - /tmp/drone-volume-cache/npm:/cache
 
   clone:
     image: armswarmdrone/git
@@ -78,21 +78,21 @@ pipeline:
       # - sleep 50000
       # - yarn install --no-progress
 
-  rebuild-composer-cache:
-    image: foo/drone-volume-cache
-    rebuild: true
-    mount:
-      - /drone/.composer
-    volumes:
-      - /tmp/drone-volume-cache/composer:/cache
+  # rebuild-composer-cache:
+  #   image: foo/drone-volume-cache
+  #   rebuild: true
+  #   mount:
+  #     - /drone/.composer
+  #   volumes:
+  #     - /tmp/drone-volume-cache/composer:/cache
 
-  rebuild-npm-cache:
-    image: foo/drone-volume-cache
-    rebuild: true
-    mount:
-      - /drone/.npm
-    volumes:
-      - /tmp/drone-volume-cache/npm:/cache
+  # rebuild-npm-cache:
+  #   image: foo/drone-volume-cache
+  #   rebuild: true
+  #   mount:
+  #     - /drone/.npm
+  #   volumes:
+  #     - /tmp/drone-volume-cache/npm:/cache
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
