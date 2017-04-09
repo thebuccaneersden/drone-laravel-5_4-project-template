@@ -52,8 +52,19 @@ pipeline:
       ###
       # The following 2 commands ensure that npm caches its stuff in a common
       # area so it can be cached by the `drone-volume-cache` plugin.
-      - if [ ! -d "/drone/.npm/" ]; then mkdir /drone/.npm; fi
-      - npm config set cache /drone/.npm
+      - |
+        if [ ! -d "/drone/.npm/" ]; then
+          mkdir /drone/.npm;
+        fi
+        if [ ! -d "/drone/.npm/cache/" ]; then
+          mkdir /drone/.npm/cache;
+        fi
+        if [ ! -d "/drone/.npm/node_modules/" ]; then
+          mkdir /drone/.npm/node_modules;
+        fi
+      - npm config set cache /drone/.npm/cache
+      - cp -R /drone/.npm/node_modules ./
+      - ls -la ./
       ###
       - npm install
       # - npm install -g node-gyp
