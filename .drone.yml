@@ -68,6 +68,7 @@ pipeline:
       - ls -la ./node_modules/
       ###
       - npm install
+      - apt-get install rsync
       - rsync -h
       # - cp -R ./node_modules/* /drone/.npm/node_modules/
       # - npm install -g node-gyp
