@@ -20,35 +20,35 @@ pipeline:
   clone:
     image: armswarmdrone/git
 
-  build:
-    # image: sandlayth/arm-nginx-php-fpm
-    # image: hareemca123/arm-nginx-php
-    image: mathewpeterson/armhf-php7
-    # detach: true
-    commands:
-      ###
-      # The following 2 commands ensure that composer caches its stuff in a common
-      # area so it can be cached by the `drone-volume-cache` plugin.
-      # - |
-      #   if [ ! -d "/drone/.composer/" ]; then
-      #     mv ~/.composer /drone/;
-      #   fi
-      # - export COMPOSER_HOME=/drone/.composer
-      # ###
-      # - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
-      # - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
-      # - composer -q install
-      # - ./vendor/bin/php-linter ./app/
-      # - php vendor/bin/security-checker security:check ./ -n
-      # - cp .env.drone .env
-      # - php artisan migrate --env=testing --no-interaction -vvv
-      # - php artisan db:seed --env=testing --no-interaction -vvv
-      # - ./vendor/bin/phpunit  -vvv
-      # - php artisan serve > /dev/null 2>&1 &
-      # - ./vendor/bin/wait-for-webserver
-      # - curl localhost:8000
-      - php -v
-      - sleep 20
+  # build:
+  #   # image: sandlayth/arm-nginx-php-fpm
+  #   # image: hareemca123/arm-nginx-php
+  #   image: mathewpeterson/armhf-php7
+  #   # detach: true
+  #   commands:
+  #     ###
+  #     # The following 2 commands ensure that composer caches its stuff in a common
+  #     # area so it can be cached by the `drone-volume-cache` plugin.
+  #     # - |
+  #     #   if [ ! -d "/drone/.composer/" ]; then
+  #     #     mv ~/.composer /drone/;
+  #     #   fi
+  #     # - export COMPOSER_HOME=/drone/.composer
+  #     # ###
+  #     # - find ./app -name "*.php" -print0 | xargs -0 -n1 -P8 php -l > /dev/null
+  #     # - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
+  #     # - composer -q install
+  #     # - ./vendor/bin/php-linter ./app/
+  #     # - php vendor/bin/security-checker security:check ./ -n
+  #     # - cp .env.drone .env
+  #     # - php artisan migrate --env=testing --no-interaction -vvv
+  #     # - php artisan db:seed --env=testing --no-interaction -vvv
+  #     # - ./vendor/bin/phpunit  -vvv
+  #     # - php artisan serve > /dev/null 2>&1 &
+  #     # - ./vendor/bin/wait-for-webserver
+  #     # - curl localhost:8000
+  #     - php -v
+  #     - sleep 20
 
   build-node:
     image: hypriot/rpi-node
