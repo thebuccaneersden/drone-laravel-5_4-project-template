@@ -25,7 +25,7 @@ pipeline:
     # image: hareemca123/arm-nginx-php
     # image: mathewpeterson/armhf-php7
     image: enclarify/php7-apache-armhf
-    # detach: true
+    detach: true
     commands:
       ###
       # The following 2 commands ensure that composer caches its stuff in a common
