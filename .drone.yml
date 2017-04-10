@@ -111,8 +111,8 @@ services:
       - MYSQL_DATABASE=testing
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
-  # webserver:
-  #   image: hareemca123/arm-nginx-php
+  webserver:
+    image: mathewpeterson/armhf-php7
   #   environment:
       # - MYSQL_DATABASE=testing
       # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
