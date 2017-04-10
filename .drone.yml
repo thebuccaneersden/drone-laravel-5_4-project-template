@@ -115,6 +115,9 @@ services:
   webserver:
     # image: sandlayth/arm-nginx-php-fpm
     image: hareemca123/arm-nginx-php
+    commands:
+      - ls -la ./
+      - pwd
     # image: mathewpeterson/armhf-php7
     # image: enclarify/php7-apache-armhf
   #   environment:
