@@ -24,7 +24,7 @@ pipeline:
     # image: sandlayth/arm-nginx-php-fpm
     # image: hareemca123/arm-nginx-php
     image: mathewpeterson/armhf-php7
-    # detach: true
+    detach: true
     commands:
       ###
       # The following 2 commands ensure that composer caches its stuff in a common
@@ -47,6 +47,11 @@ pipeline:
       # - php artisan serve > /dev/null 2>&1 &
       # - ./vendor/bin/wait-for-webserver
       # - curl localhost:8000
+      - php -v
+      - php -v
+      - php -v
+      - php -v
+      - php -v
       - php -v
 
   build-node:
