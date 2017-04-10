@@ -20,6 +20,14 @@ pipeline:
   clone:
     image: armswarmdrone/git
 
+  webserver:
+    # image: sandlayth/arm-nginx-php-fpm
+    image: hareemca123/arm-nginx-php
+    detach: true
+    commands:
+      - ls -la ./
+      - pwd
+  
   # build:
   #   # image: sandlayth/arm-nginx-php-fpm
   #   # image: hareemca123/arm-nginx-php
