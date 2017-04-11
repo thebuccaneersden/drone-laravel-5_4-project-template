@@ -123,7 +123,7 @@ services:
   webserver:
     # image: sandlayth/arm-nginx-php-fpm
     image: hareemca123/arm-nginx-php
-    command: [ '/bin/bash' ]
+    entrypoint: [ '/bin/bash' ]
     # commands:
     #   - ls -la ./
     #   - pwd
