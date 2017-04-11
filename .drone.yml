@@ -20,13 +20,13 @@ pipeline:
   clone:
     image: armswarmdrone/git
 
-  webserver:
-    # image: sandlayth/arm-nginx-php-fpm
-    image: hareemca123/arm-nginx-php
-    detach: true
-    commands:
-      - ls -la ./
-      - pwd
+  # webserver:
+  #   # image: sandlayth/arm-nginx-php-fpm
+  #   image: hareemca123/arm-nginx-php
+  #   detach: true
+  #   commands:
+  #     - ls -la ./
+  #     - pwd
   
   # build:
   #   # image: sandlayth/arm-nginx-php-fpm
@@ -120,12 +120,13 @@ services:
       - MYSQL_DATABASE=testing
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
-  # webserver:
-  #   # image: sandlayth/arm-nginx-php-fpm
-  #   image: hareemca123/arm-nginx-php
-  #   commands:
-  #     - ls -la ./
-  #     - pwd
+  webserver:
+    # image: sandlayth/arm-nginx-php-fpm
+    image: hareemca123/arm-nginx-php
+    command: [ '/bin/bash' ]
+    # commands:
+    #   - ls -la ./
+    #   - pwd
     # image: mathewpeterson/armhf-php7
     # image: enclarify/php7-apache-armhf
   #   environment:
