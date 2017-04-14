@@ -124,7 +124,8 @@ services:
     # image: sandlayth/arm-nginx-php-fpm
     image: hareemca123/arm-nginx-php
     # entrypoint: [ 'php', 'artisan', 'serve' ]
-    entrypoint: [ 'php -S 127.0.0.1' ]
+    entrypoint: [ 'php' ]
+    command: [ '-S', '127.0.0.1' ]
     # commands:
     #   - ls -la ./
     #   - pwd
