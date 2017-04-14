@@ -123,7 +123,7 @@ services:
   webserver:
     # image: sandlayth/arm-nginx-php-fpm
     image: hareemca123/arm-nginx-php
-    # entrypoint: [ 'sleep', '5000' ]
+    entrypoint: [ 'php', 'artisan', 'serve' ]
     # commands:
     #   - ls -la ./
     #   - pwd
