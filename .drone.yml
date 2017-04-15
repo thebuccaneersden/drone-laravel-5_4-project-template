@@ -81,8 +81,8 @@ pipeline:
       - npm config set loglevel warn
       # - npm install
       # - ./node_modules/newman/bin/newman.js -v
-      - curl localhost
-      # - curl localhost:8000
+      - curl localhost:8000
+      - sleep 5000
       # - rm -rf /drone/.npm/node_modules
       # - mkdir /drone/.npm/node_modules
       # - cp -R ./node_modules/* /drone/.npm/node_modules/
@@ -125,7 +125,7 @@ services:
     image: hareemca123/arm-nginx-php
     # entrypoint: [ 'php', 'artisan', 'serve' ]
     entrypoint: [ 'php' ]
-    command: [ '-S', '127.0.0.1:80' ]
+    command: [ '-S', '127.0.0.1:8000' ]
     # commands:
     #   - ls -la ./
     #   - pwd
