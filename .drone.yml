@@ -54,7 +54,7 @@ pipeline:
       - echo "[✓] No PHP syntax errors detected in the [ app/ ] folder" > /dev/null
       - composer -q install
       - ./vendor/bin/php-linter ./app/
-      - php vendor/bin/security-checker security:check ./ -n
+      # - php vendor/bin/security-checker security:check ./ -n
       - cp .env.drone .env
       - php artisan migrate --env=testing --no-interaction -vvv
       - php artisan db:seed --env=testing --no-interaction -vvv
@@ -134,7 +134,8 @@ services:
     # command: [ '-S', '127.0.0.1:8000' ]
     # entrypoint: [ 'php' ]
     # command: [ '-S', '127.0.0.1:8000', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/public/index.php' ]
-    image: mathewpeterson/armhf-php7:fpm
+    # image: mathewpeterson/armhf-php7:fpm
+    image: enclarify/php7-apache-armhf
     # entrypoint: [ 'php-fpm' ]
     # commands:
     #   - ls -la ./
