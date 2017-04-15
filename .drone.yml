@@ -135,7 +135,7 @@ services:
     # entrypoint: [ 'php' ]
     # command: [ '-S', '127.0.0.1:8000', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/public/index.php' ]
     image: mathewpeterson/armhf-php7
-    entrypoint: [ 'php-fpm' ]
+    # entrypoint: [ 'php-fpm' ]
     # commands:
     #   - ls -la ./
     #   - pwd
