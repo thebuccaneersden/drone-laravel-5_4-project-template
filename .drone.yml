@@ -32,7 +32,7 @@ pipeline:
     image: sandlayth/arm-nginx-php-fpm
     # image: hareemca123/arm-nginx-php
     detach: true
-    entrypoint: [ 'php', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/artisan', 'serve' ]
+    command: [ 'php', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/artisan', 'serve' ]
 
   build:
     # image: sandlayth/arm-nginx-php-fpm
