@@ -28,17 +28,17 @@ pipeline:
   #     - ls -la ./
   #     - pwd
   
-  webserver:
-    image: sandlayth/arm-nginx-php-fpm
-    # image: hareemca123/arm-nginx-php
-    detach: true
-    command: [ 'php', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/artisan', 'serve' ]
+  # webserver:
+  #   image: sandlayth/arm-nginx-php-fpm
+  #   # image: hareemca123/arm-nginx-php
+  #   detach: true
+  #   command: [ 'php', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/artisan', 'serve' ]
 
   build:
     # image: sandlayth/arm-nginx-php-fpm
     # image: hareemca123/arm-nginx-php
-    # image: mathewpeterson/armhf-php7
-    image: enclarify/php7-apache-armhf
+    image: mathewpeterson/armhf-php7
+    # image: enclarify/php7-apache-armhf
     # detach: true
     commands:
       ###
@@ -127,11 +127,15 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
   webserver:
-    image: sandlayth/arm-nginx-php-fpm
+    # image: sandlayth/arm-nginx-php-fpm
     # image: hareemca123/arm-nginx-php
-    entrypoint: [ 'php', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/artisan', 'serve' ]
+    # entrypoint: [ 'php', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/artisan', 'serve' ]
     # entrypoint: [ 'php' ]
     # command: [ '-S', '127.0.0.1:8000' ]
+    # entrypoint: [ 'php' ]
+    # command: [ '-S', '127.0.0.1:8000', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/public/index.php' ]
+    image: mathewpeterson/armhf-php7
+    entrypoint: [ 'php-fpm' ]
     # commands:
     #   - ls -la ./
     #   - pwd
