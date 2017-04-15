@@ -1,38 +1,25 @@
 platform: linux/arm
 
 pipeline:
-  # restore-composer-cache:
-  #   image: foo/drone-volume-cache
-  #   restore: true
-  #   mount:
-  #     - /drone/.composer
-  #   volumes:
-  #     - /tmp/drone-volume-cache/composer:/cache
 
-  # restore-npm-cache:
-  #   image: foo/drone-volume-cache
-  #   restore: true
-  #   mount:
-  #     - /drone/.npm
-  #   volumes:
-  #     - /tmp/drone-volume-cache/npm:/cache
+  restore-composer-cache:
+    image: foo/drone-volume-cache
+    restore: true
+    mount:
+      - /drone/.composer
+    volumes:
+      - /tmp/drone-volume-cache/composer:/cache
+
+  restore-npm-cache:
+    image: foo/drone-volume-cache
+    restore: true
+    mount:
+      - /drone/.npm
+    volumes:
+      - /tmp/drone-volume-cache/npm:/cache
 
   clone:
     image: armswarmdrone/git
-
-  # webserver:
-  #   # image: sandlayth/arm-nginx-php-fpm
-  #   image: hareemca123/arm-nginx-php
-  #   detach: true
-  #   commands:
-  #     - ls -la ./
-  #     - pwd
-  
-  # webserver:
-  #   image: sandlayth/arm-nginx-php-fpm
-  #   # image: hareemca123/arm-nginx-php
-  #   detach: true
-  #   command: [ 'php', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/artisan', 'serve' ]
 
   build:
     image: sandlayth/arm-nginx-php-fpm
@@ -59,11 +46,9 @@ pipeline:
       - php artisan migrate --env=testing --no-interaction -vvv
       - php artisan db:seed --env=testing --no-interaction -vvv
       - ./vendor/bin/phpunit  -vvv
-      # - php artisan serve > /dev/null 2>&1 &
-      # - ./vendor/bin/wait-for-webserver
-      # - curl localhost:8000
+      - php artisan serve > /dev/null 2>&1 &
+      - ./vendor/bin/wait-for-webserver
       - php -v
-      # - sleep 20
 
   build-node:
     image: hypriot/rpi-node
@@ -85,10 +70,10 @@ pipeline:
       - ln -s /drone/.npm/node_modules ./
       ###
       - npm config set loglevel warn
-      # - npm install
+      - npm install
       # - ./node_modules/newman/bin/newman.js -v
-      - curl localhost:8000
-      - sleep 5000
+      # - curl localhost:8000
+      # - sleep 5000
       # - rm -rf /drone/.npm/node_modules
       # - mkdir /drone/.npm/node_modules
       # - cp -R ./node_modules/* /drone/.npm/node_modules/
@@ -97,21 +82,21 @@ pipeline:
       # - sleep 50000
       # - yarn install --no-progress
 
-  # rebuild-composer-cache:
-  #   image: foo/drone-volume-cache
-  #   rebuild: true
-  #   mount:
-  #     - /drone/.composer
-  #   volumes:
-  #     - /tmp/drone-volume-cache/composer:/cache
+  rebuild-composer-cache:
+    image: foo/drone-volume-cache
+    rebuild: true
+    mount:
+      - /drone/.composer
+    volumes:
+      - /tmp/drone-volume-cache/composer:/cache
 
-  # rebuild-npm-cache:
-  #   image: foo/drone-volume-cache
-  #   rebuild: true
-  #   mount:
-  #     - /drone/.npm
-  #   volumes:
-  #     - /tmp/drone-volume-cache/npm:/cache
+  rebuild-npm-cache:
+    image: foo/drone-volume-cache
+    rebuild: true
+    mount:
+      - /drone/.npm
+    volumes:
+      - /tmp/drone-volume-cache/npm:/cache
 
   ###
   # DEPLOYMENT STEP - fill in the details when set up
@@ -126,24 +111,16 @@ services:
       - MYSQL_DATABASE=testing
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
-  webserver:
-    # image: sandlayth/arm-nginx-php-fpm
-    # image: hareemca123/arm-nginx-php
-    # entrypoint: [ 'php', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/artisan', 'serve' ]
-    # entrypoint: [ 'php' ]
-    # command: [ '-S', '127.0.0.1:8000' ]
-    # entrypoint: [ 'php' ]
-    # command: [ '-S', '127.0.0.1:8000', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/public/index.php' ]
-    # image: mathewpeterson/armhf-php7:fpm
-    image: enclarify/php7-apache-armhf
-    environment:
-      - APACHE_CONFDIR=/var/www/
-    # entrypoint: [ 'php-fpm' ]
-    # commands:
-    #   - ls -la ./
-    #   - pwd
-    # image: mathewpeterson/armhf-php7
-    # image: enclarify/php7-apache-armhf
+  # webserver:
+  #   # image: sandlayth/arm-nginx-php-fpm
+  #   # image: hareemca123/arm-nginx-php
+  #   # image: mathewpeterson/armhf-php7:fpm
+  #   image: enclarify/php7-apache-armhf
+  #   # entrypoint: [ 'php', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/artisan', 'serve' ]
+  #   # entrypoint: [ 'php' ]
+  #   # command: [ '-S', '127.0.0.1:8000' ]
+  #   # entrypoint: [ 'php' ]
+  #   # command: [ '-S', '127.0.0.1:8000', '/drone/src/pi.phulse.com/mirrored-github-projects/drone-laravel-5_4-project-template/public/index.php' ]
   #   environment:
-      # - MYSQL_DATABASE=testing
-      # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+  #     - APACHE_CONFDIR=/var/www/
+  #   # entrypoint: [ 'php-fpm' ]
