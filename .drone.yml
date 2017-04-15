@@ -125,7 +125,7 @@ services:
     image: hareemca123/arm-nginx-php
     # entrypoint: [ 'php', 'artisan', 'serve' ]
     entrypoint: [ 'php' ]
-    command: [ '-S', '127.0.0.1' ]
+    command: [ '-S', '127.0.0.1:80' ]
     # commands:
     #   - ls -la ./
     #   - pwd
