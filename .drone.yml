@@ -50,7 +50,7 @@ pipeline:
       - php -v
 
   build-node:
-    image: hypriot/rpi-node
+    image: thebuccaneersden/rpi-node
     commands:
       ###
       # The following 2 commands ensure that npm caches its stuff in a common
